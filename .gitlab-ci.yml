@@ -1,0 +1,15 @@
+cache:
+  key: ${CI_BUILD_REF_NAME}
+
+pages:
+  stage: deploy
+  image: eclipse-temurin:11.0.25_9-jre-jammy
+  script:
+    - javac -d out/production/crypto2/ src/Main.java
+    - cd out/production/crypto2/
+    - java "-Dfile.encoding=UTF-8" "-Dconsole.encoding=UTF-8" Main
+  artifacts:
+    paths:
+      - public
+  only:
+    - main

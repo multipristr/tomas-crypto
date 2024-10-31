@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+:root {
+    --text-color: 255, 255, 255;
+    --text-color2: 0, 0, 0;
+    --color1: 45, 39, 39;
+    --color2: 89, 73, 92;
+    --color3: 143, 67, 238;
+    --color4: 138, 113, 143;
+    --color5: 185, 139, 240;
+    --padding1: 1.5rem;
+    --padding1mobile: 1rem;
+    --padding2: 5px;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    max-width: 100dvw;
+    min-height: 100%;
+    overflow-x: hidden;
+    font-family: 'Poppins', "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    transition: all 1s;
+    color: rgba(var(--text-color));
+    background: rgba(var(--color1));
+    color-scheme: dark;
+    font-size: 120%;
+    gap: var(--padding2);
+    padding: var(--padding2);
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+footer {
+    display: flex;
+    font-size: 60%;
+    margin-top: auto;
+    margin-left: auto;
+    flex-wrap: wrap;
+    padding-right: 1em;
+}
+
+a {
+    padding-left: 1em;
+}
