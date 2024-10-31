@@ -3,7 +3,7 @@ cache:
 
 pages:
   stage: deploy
-  image: eclipse-temurin:11.0.25_9-jre-jammy
+  image: eclipse-temurin:11.0.25_9-jdk-alpine
   script:
     - javac -d out/production/crypto2/ src/Main.java
     - cd out/production/crypto2/
