@@ -4,7 +4,6 @@ cache:
 pages:
   stage: deploy
   image: eclipse-temurin:11.0.25_9-jdk-alpine
-  tags: [ saas-linux-medium-amd64 ]
   script:
     - javac -d out/production/crypto2/ src/Main.java
     - cd out/production/crypto2/
