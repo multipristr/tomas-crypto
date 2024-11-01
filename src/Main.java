@@ -61,7 +61,7 @@ public class Main {
             loadCoins(coinNames)
                     .filter(coin -> CUT_OFF_DATE.compareTo(coin.data[0].date) >= 0)
                     .map(Main::staticValueInvesting)
-                    .sorted(Comparator.comparingDouble(result -> result.gain).reversed())
+                    .sorted(Comparator.<Result>comparingDouble(result -> result.gain).reversed())
                     .forEachOrdered(pair -> {
                         System.out.println(pair.transactions);
                         System.out.println();
