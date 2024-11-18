@@ -1,14 +1,37 @@
 cache:
   key: ${CI_BUILD_REF_NAME}
 
-pages:
-  stage: deploy
+stages:
+  - build
+  - run
+  - deploy
+
+compile:
+  stage: build
   image: eclipse-temurin:11.0.25_9-jdk-alpine
-  tags: [ saas-linux-medium-amd64 ]
   script:
     - javac -d out/production/crypto2/ src/Main.java
+  artifacts:
+    paths:
+      - out/production/crypto2/
+
+export:
+  stage: run
+  image: eclipse-temurin:11.0.25_9-jre-alpine
+  tags: [ saas-linux-medium-amd64 ]
+  script:
     - cd out/production/crypto2/
     - java "-Dfile.encoding=UTF-8" "-Dconsole.encoding=UTF-8" Main
+  artifacts:
+    paths:
+      - json
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+
+pages:
+  stage: deploy
+  script:
+    - bash --version
   artifacts:
     paths:
       - public
