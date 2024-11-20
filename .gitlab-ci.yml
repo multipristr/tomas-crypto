@@ -30,8 +30,9 @@ export:
 
 pages:
   stage: deploy
+  image: alpine:latest
   script:
-    - bash --version
+    - ""
   artifacts:
     paths:
       - public
