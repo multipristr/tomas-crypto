@@ -99,10 +99,10 @@ public class Main {
 
     private static String[] determineCoinNames(String[] args) {
         String[] coinNames = new String[]{
-                "SOL", "MNT27075", "KAS", "VET", "FTM", "RUNE", "THETA", "OKB", "OP", "PEPE24478",
-                "IMX10603", "HBAR", "CRO", "GRT6719", "INJ", "DAI", "STX4847", "ARB11841", "ATOM", "RNDR",
-                "TAO22974", "DOGE", "AVAX", "TON", "DOT", "MATIC", "UNI7083", "ICP", "NEAR", "APT21794", "LEO",
-                "BTC", "ETH", "BNB", "ADA", "XRP", "LTC", "LINK", "BCH", "XLM", "TRX", "ETC", "FIL", "XMR"
+                "SOL", "VET", "FTM", "RUNE", "THETA", "OP", "PEPE24478", "SHIB", "SUI20947", "ALGO", "KAS", "OM", "ICP",
+                "IMX10603", "HBAR", "GRT6719", "INJ", "STX4847", "ATOM", "RENDER", "FET", "NEAR", "APT21794", "AAVE",
+                "TAO22974", "DOGE", "AVAX", "TON", "DOT", "MATIC", "UNI7083", "TRX", "ETC", "FIL", "XMR", "TIA22861",
+                "BTC", "ETH", "BNB", "ADA", "XRP", "LTC", "LINK", "BCH", "XLM"
         };
         if (args.length > 0) {
             String[] argumentCoinNames = Arrays.stream(args[0].split(","))
