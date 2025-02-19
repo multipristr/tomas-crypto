@@ -115,7 +115,7 @@ public class Main {
                 coinNames = argumentCoinNames;
             }
         }
-        System.out.println("Coin names " + Arrays.stream(argumentCoinNames)
+        System.out.println("Coin names " + Arrays.stream(coinNames)
                 .map(coinName -> '`' + coinName + '`')
                 .collect(Collectors.joining(", "))
         );
