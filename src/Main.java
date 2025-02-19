@@ -58,9 +58,8 @@ public class Main {
                     "</head>" +
                     "<body>\n" +
                     "<pre>\n");
-            loadCoins(coinNames)                    
+            loadCoins(coinNames)
                     .filter(coin -> CUT_OFF_DATE.compareTo(coin.data[0].date) >= 0)
-                    .parallel()
                     .map(Main::staticValueInvesting)
                     .sorted(Comparator.<Result>comparingDouble(result -> result.gain).reversed())
                     .forEachOrdered(pair -> {
@@ -352,6 +351,7 @@ public class Main {
         Pattern closePattern = Pattern.compile("\"close\":\\[(?<close>.+?)]");
 
         return Arrays.stream(coinNames)
+                .parallel()
                 .map(ticker -> {
                     try {
                         String url = "https://query2.finance.yahoo.com/v8/finance/chart/" + ticker + "-USD?period1=1509494400&period2=9999999999&interval=1d&events=history";
