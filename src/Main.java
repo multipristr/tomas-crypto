@@ -99,9 +99,9 @@ public class Main {
 
     private static String[] determineCoinNames(String[] args) {
         String[] coinNames = new String[]{
-                "SOL", "VET", "FTM", "RUNE", "THETA", "OP", "PEPE24478", "SHIB", "SUI20947", "ALGO", "KAS", "OM", "ICP",
+                /*"SOL", "VET", "FTM", "RUNE", "THETA", "OP", "PEPE24478", "SHIB", "SUI20947", "ALGO", "KAS", "OM", "ICP",
                 "IMX10603", "HBAR", "GRT6719", "INJ", "STX4847", "ATOM", "RENDER", "FET", "NEAR", "APT21794", "AAVE",
-                "TAO22974", "DOGE", "AVAX", "TON", "DOT", "MATIC", "UNI7083", "TRX", "ETC", "FIL", "XMR", "TIA22861",
+                "TAO22974", "TIA22861", "AVAX", "TON", "DOT", "MATIC", "UNI7083",*/ "DOGE", "TRX", "ETC", "FIL", "XMR",
                 "BTC", "ETH", "BNB", "ADA", "XRP", "LTC", "LINK", "BCH", "XLM"
         };
         if (args.length > 0) {
@@ -110,15 +110,15 @@ public class Main {
                     .filter(ticker -> !ticker.isEmpty())
                     .toArray(String[]::new);
             if (argumentCoinNames.length < 1) {
-                System.err.println("Ignoring coin names from program arguments '" + args[0] + '\'');
+                System.err.println("Ignoring coin names from program arguments `" + args[0] + '`');
             } else {
                 coinNames = argumentCoinNames;
-                System.out.println("Coin names " + Arrays.stream(argumentCoinNames)
-                        .map(proposal -> '\'' + proposal + '\'')
-                        .collect(Collectors.joining(", "))
-                );
             }
         }
+        System.out.println("Coin names " + Arrays.stream(argumentCoinNames)
+                .map(coinName -> '`' + coinName + '`')
+                .collect(Collectors.joining(", "))
+        );
         return coinNames;
     }
 
