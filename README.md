@@ -1,1 +1,1 @@
-[https://tomas-crypto.gitlab.io/coins/](https://tomas-crypto.gitlab.io/coins/)
+[https://multipristr.github.io/tomas-crypto/](https://multipristr.github.io/tomas-crypto/)

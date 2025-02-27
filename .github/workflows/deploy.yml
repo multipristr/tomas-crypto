@@ -26,22 +26,56 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - name: Set up JDK 8
+        uses: actions/setup-java@v4.7.0
+        with:
+          java-version: '8.0.442'
+          distribution: 'zulu'
+      - run: javac -d out/production/crypto2/ src/Main.java
+      - name: Upload compiled classes
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: crypto2
+          path: ${{ github.workspace }}/out/production/crypto2/
+          if-no-files-found: error
+
+  run:
+    if: ${{ github.event_name == 'schedule' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4.1.9
+        with:
+          name: crypto2
+      - name: Set up JDK 8
+        uses: actions/setup-java@v4.7.0
+        with:
+          java-version: '8.0.442'
+          distribution: 'zulu'
+      - run:  java "-Dfile.encoding=UTF-8" "-Dconsole.encoding=UTF-8" -cp "out/production/crypto2/" Main
+      - name: Upload pages
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          path: ${{ github.workspace }}/public/
+          if-no-files-found: error
+
   deploy:
+    if: ${{ github.ref == 'refs/heads/main' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v5.0.0
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v3.0.1
         with:
           # Upload entire repository
-          path: './public/'
+          path: ${{ github.workspace }}/public/
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4.0.5
