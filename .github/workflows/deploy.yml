@@ -46,7 +46,7 @@ jobs:
 
   run:
     needs: build
-    if: ${{ github.event_name == 'schedule' }}
+    if: ${{ github.event_name != 'schedule' }}
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/download-artifact@v4.1.9
@@ -69,7 +69,7 @@ jobs:
 
   copy:
     needs: build
-    if: ${{ github.event_name != 'schedule' }}
+    if: ${{ github.event_name == 'schedule' }}
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.2.2
