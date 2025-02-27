@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.2.2
-      - name: Copy repository pages
+      - name: Upload repository pages
         uses: actions/upload-artifact@v4.6.1
         with:
           name: pages
@@ -80,7 +80,11 @@ jobs:
 
   deploy:
     needs: [ run, copy ]
-    if: ${{ success() && (github.ref == 'refs/heads/main') }}
+    if: |
+      always()
+      && contains(needs.*.result, 'success')
+      && !contains(needs.*.result, 'failure')
+      && (github.ref == 'refs/heads/main')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
