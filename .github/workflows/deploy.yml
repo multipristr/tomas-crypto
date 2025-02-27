@@ -57,7 +57,9 @@ jobs:
         with:
           java-version: '8.0.442'
           distribution: 'zulu'
-      - run: java "-Dfile.encoding=UTF-8" "-Dconsole.encoding=UTF-8" -cp "out/production/crypto2/" Main
+      - run: mkdir -p public/
+      - run: touch index.html
+      - run: java "-Dfile.encoding=UTF-8" "-Dconsole.encoding=UTF-8" -classpath "out/production/crypto2/" Main
       - name: Upload generated pages
         uses: actions/upload-artifact@v4.6.1
         with:

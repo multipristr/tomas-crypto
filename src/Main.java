@@ -31,7 +31,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String[] coinNames = determineCoinNames(args);
 
-        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("..", "..", "..", "public", "index.html"))) {
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("public", "index.html"))) {
             writer.write("<!DOCTYPE html>\n" +
                     "<html lang=\"en\">\n" +
                     "<head>\n" +
