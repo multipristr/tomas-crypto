@@ -38,7 +38,7 @@ jobs:
       - run: mkdir -p out/production/crypto2/
       - run: javac -d out/production/crypto2/ src/Main.java
       - name: Upload compiled classes
-        uses: actions/upload-artifact@v4.6.1
+        uses: actions/upload-artifact@v4
         with:
           name: crypto2
           path: ${{ github.workspace }}/out/production/crypto2/
@@ -47,7 +47,7 @@ jobs:
   run:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/download-artifact@v4.1.9
+      - uses: actions/download-artifact@v4
         with:
           name: crypto2
       - name: Set up JDK 8
@@ -73,12 +73,21 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5.0.0
       - uses: actions/download-artifact@v4.1.9
+        if: ${{ github.event_name == 'schedule' }}
         with:
           name: pages
       - name: Upload generated pages
+        if: ${{ github.event_name == 'schedule' }}
         uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: ${{ github.workspace }}/public/
+      - uses: actions/checkout@v4.2.2
+        if: ${{ github.event_name != 'schedule' }}
+      - name: Upload repository pages
+        if: ${{ github.event_name != 'schedule' }}
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          path: 'public/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
