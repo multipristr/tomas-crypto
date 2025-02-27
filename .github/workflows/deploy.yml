@@ -59,7 +59,7 @@ jobs:
           distribution: 'zulu'
       - run: mkdir -p public/
       - run: touch index.html
-      - run: java "-Dfile.encoding=UTF-8" "-Dconsole.encoding=UTF-8" -classpath "out/production/crypto2/" Main
+      - run: java "-Dfile.encoding=UTF-8" "-Dconsole.encoding=UTF-8" -classpath "out/production/crypto2/" Main BTC
       - name: Upload generated pages
         uses: actions/upload-artifact@v4.6.1
         with:
@@ -77,7 +77,7 @@ jobs:
         uses: actions/upload-artifact@v4.6.1
         with:
           name: pages
-          path: 'public/'
+          path: 'public/index.html'
           if-no-files-found: error
 
   deploy:
@@ -92,6 +92,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-24.04
     steps:
+      - uses: actions/checkout@v4.2.2
       - uses: actions/download-artifact@v4.1.9
         with:
           name: pages
