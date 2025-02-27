@@ -45,8 +45,8 @@ jobs:
           if-no-files-found: error
 
   run:
-    if: ${{ github.event_name == 'schedule' }}
     needs: build
+    if: ${{ github.event_name == 'schedule' }}
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/download-artifact@v4.1.9
@@ -58,38 +58,43 @@ jobs:
           java-version: '8.0.442'
           distribution: 'zulu'
       - run: java "-Dfile.encoding=UTF-8" "-Dconsole.encoding=UTF-8" -cp "out/production/crypto2/" Main
-      - name: Upload pages
+      - name: Upload generated pages
         uses: actions/upload-artifact@v4.6.1
         with:
           name: pages
           path: ${{ github.workspace }}/public/
           if-no-files-found: error
 
+  copy:
+    needs: build
+    if: ${{ github.event_name != 'schedule' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - name: Copy repository pages
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: pages
+          path: 'public/'
+          if-no-files-found: error
+
   deploy:
+    needs: [ run, copy ]
     if: ${{ success() && (github.ref == 'refs/heads/main') }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-24.04
     steps:
-      - name: Setup Pages
-        uses: actions/configure-pages@v5.0.0
       - uses: actions/download-artifact@v4.1.9
-        if: ${{ github.event_name == 'schedule' }}
         with:
           name: pages
-      - name: Upload generated pages
-        if: ${{ github.event_name == 'schedule' }}
+      - name: Setup Pages
+        uses: actions/configure-pages@v5.0.0
+      - name: Upload pages
         uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: ${{ github.workspace }}/public/
-      - uses: actions/checkout@v4.2.2
-        if: ${{ github.event_name != 'schedule' }}
-      - name: Upload repository pages
-        if: ${{ github.event_name != 'schedule' }}
-        uses: actions/upload-pages-artifact@v3.0.1
-        with:
-          path: 'public/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
