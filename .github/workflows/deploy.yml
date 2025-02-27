@@ -49,6 +49,7 @@ jobs:
     if: ${{ github.event_name != 'schedule' }}
     runs-on: ubuntu-24.04
     steps:
+      - uses: actions/checkout@v4.2.2
       - uses: actions/download-artifact@v4.1.9
         with:
           name: crypto2
@@ -92,7 +93,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4.2.2
       - uses: actions/download-artifact@v4.1.9
         with:
           name: pages
