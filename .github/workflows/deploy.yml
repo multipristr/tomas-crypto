@@ -67,7 +67,6 @@ jobs:
 
   deploy:
     if: ${{ success() && (github.ref == 'refs/heads/main') }}
-    needs: run
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
