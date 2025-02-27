@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v4.6.1
         with:
           name: crypto2
-          path: ${{ github.workspace }}/out
+          path: ${{ github.workspace }}/out/**
           if-no-files-found: error
 
   run:
@@ -62,7 +62,7 @@ jobs:
         uses: actions/upload-artifact@v4.6.1
         with:
           name: pages
-          path: ${{ github.workspace }}/public
+          path: ${{ github.workspace }}/public/**
           if-no-files-found: error
 
   copy:
