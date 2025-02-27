@@ -38,16 +38,18 @@ jobs:
       - run: mkdir -p out/production/crypto2/
       - run: javac -d out/production/crypto2/ src/Main.java
       - name: Upload compiled classes
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.6.1
         with:
           name: crypto2
           path: ${{ github.workspace }}/out/production/crypto2/
           if-no-files-found: error
 
   run:
+    if: ${{ github.event_name == 'schedule' }}
+    needs: build
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4.1.9
         with:
           name: crypto2
       - name: Set up JDK 8
@@ -64,7 +66,8 @@ jobs:
           if-no-files-found: error
 
   deploy:
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ success() && (github.ref == 'refs/heads/main') }}
+    needs: run
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
