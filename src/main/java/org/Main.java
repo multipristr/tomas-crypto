@@ -1,8 +1,17 @@
+package org;
+
+import com.github.zhkl0228.impersonator.ImpersonatorApi;
+import com.github.zhkl0228.impersonator.ImpersonatorFactory;
+import okhttp3.OkHttpClient;
+import okhttp3.OkHttpClientFactory;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+
+import javax.net.ssl.SSLContext;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.UncheckedIOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Instant;
@@ -10,9 +19,7 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Scanner;
 import java.util.StringJoiner;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -350,50 +357,33 @@ public class Main {
         Pattern lowPattern = Pattern.compile("\"low\":\\[(?<low>.+?)]");
         Pattern highPattern = Pattern.compile("\"high\":\\[(?<high>.+?)]");
         Pattern closePattern = Pattern.compile("\"close\":\\[(?<close>.+?)]");
-        String[] USER_AGENTS = {
-                // Chrome
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
-                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
 
-                // Firefox
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0",
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 14.7; rv:135.0) Gecko/20100101 Firefox/135.0",
-                "Mozilla/5.0 (X11; Linux i686; rv:135.0) Gecko/20100101 Firefox/135.0",
-
-                // Safari
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_7_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15",
-
-                // Edge
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/131.0.2903.86"
-        };
-        AtomicInteger headerCounter = new AtomicInteger();
+        ImpersonatorApi api = ImpersonatorFactory.macSafari();
+        SSLContext context = api.newSSLContext(null, null); // for TLS/JA3/JA4 fingerprints impersonation
+        OkHttpClientFactory factory = OkHttpClientFactory.create(api);
+        OkHttpClient client = factory.newHttpClient(); // for TLS/JA3/JA4 fingerprints and HTTP/2 fingerprints impersonation
 
         return Arrays.stream(coinNames)
                 .parallel()
                 .map(ticker -> {
                     try {
                         String url = "https://query2.finance.yahoo.com/v8/finance/chart/" + ticker + "-USD?period1=1509494400&period2=9999999999&interval=1d&events=history";
-                        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-                        connection.setRequestProperty("User-Agent", USER_AGENTS[headerCounter.getAndIncrement() % USER_AGENTS.length]);
-                        int status = connection.getResponseCode();
-                        if (status > 299) {
-                            StringBuilder response = new StringBuilder(url);
-                            response.append(System.lineSeparator()).append(status).append(" ").append(connection.getResponseMessage());
-                            try (Scanner scanner = new Scanner(connection.getErrorStream()).useDelimiter("\\A")) {
-                                if (scanner.hasNext()) {
-                                    response.append(System.lineSeparator()).append(scanner.next());
-                                }
-                            }
-                            connection.disconnect();
-                            throw new IOException(response.toString());
-                        }
-                        try (Scanner scanner = new Scanner(connection.getInputStream()).useDelimiter("\\A")) {
-                            if (!scanner.hasNext()) {
+
+                        Request request = new Request.Builder().url(url).build();
+                        try (Response clientResponse = client.newCall(request).execute();
+                             ResponseBody body = clientResponse.body()) {
+                            if (body == null) {
                                 throw new IOException("Empty response from " + url);
                             }
+                            int status = clientResponse.code();
+                            if (status > 299) {
+                                String response = url + System.lineSeparator()
+                                        + status + " " + clientResponse.message() + System.lineSeparator()
+                                        + body.string();
+                                throw new IOException(response);
+                            }
 
-                            String response = scanner.next();
+                            String response = body.string();
                             String[] timestamps = extractList(timestampPattern, response);
                             String[] lows = extractList(lowPattern, response);
                             String[] highs = extractList(highPattern, response);
