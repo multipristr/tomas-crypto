@@ -14,6 +14,9 @@ dependencies {
 }
 
 tasks {
+    compileJava {
+        options.release = 11
+    }
     jar {
         manifest {
             attributes["Main-Class"] = "org.Main"
@@ -27,11 +30,5 @@ tasks {
         exclude("META-INF/BC1024KE.RSA", "META-INF/BC1024KE.SF", "META-INF/BC1024KE.DSA")
         exclude("META-INF/BC2048KE.RSA", "META-INF/BC2048KE.SF", "META-INF/BC2048KE.DSA")
         exclude("META-INF/*.RSA", "META-INF/*.DSA", "META-INF/*.SF")
-    }
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(11)
     }
 }
