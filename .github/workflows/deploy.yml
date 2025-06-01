@@ -36,8 +36,6 @@ jobs:
           java-version: '11.0.27'
           distribution: 'zulu'
           cache: 'gradle'
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4.3.1
       - name: Gradle build fat jar
         run: ./gradlew check jar --continue --no-daemon --no-watch-fs
       - name: Upload compiled classes
