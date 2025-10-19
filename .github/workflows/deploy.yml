@@ -60,12 +60,12 @@ jobs:
           java-version: '11.0.27'
           distribution: 'temurin'
       - run: java "-Dfile.encoding=UTF-8" "-Dconsole.encoding=UTF-8" -jar "build/libs/crypto2.jar"
-      - name: Upload generated pages
-        uses: actions/upload-artifact@v4.6.2
+      - name: Setup Pages
+        uses: actions/configure-pages@v5.0.0
+      - name: Upload pages
+        uses: actions/upload-pages-artifact@v3.0.1
         with:
-          name: pages
           path: ${{ github.workspace }}/public/
-          if-no-files-found: error
 
   copy:
     needs: build
@@ -73,12 +73,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
-      - name: Upload repository pages
-        uses: actions/upload-artifact@v4.6.2
+      - name: Setup Pages
+        uses: actions/configure-pages@v5.0.0
+      - name: Upload pages
+        uses: actions/upload-pages-artifact@v3.0.1
         with:
-          name: pages
           path: 'public/'
-          if-no-files-found: error
 
   deploy:
     needs: [ run, copy ]
@@ -92,15 +92,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4.3.0
-        with:
-          name: pages
-      - name: Setup Pages
-        uses: actions/configure-pages@v5.0.0
-      - name: Upload pages
-        uses: actions/upload-pages-artifact@v3.0.1
-        with:
-          path: ${{ github.workspace }}
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
