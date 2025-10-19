@@ -29,11 +29,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v5.0.0
       - name: Set up JDK 11
-        uses: actions/setup-java@v4.7.1
+        uses: actions/setup-java@v5.0.0
         with:
-          java-version: '11.0.27'
+          java-version: '11.0.28'
           distribution: 'temurin'
           cache: 'gradle'
       - name: Gradle build fat jar
@@ -50,20 +50,20 @@ jobs:
     if: ${{ github.event_name == 'schedule' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
-      - uses: actions/download-artifact@v4.3.0
+      - uses: actions/checkout@v5.0.0
+      - uses: actions/download-artifact@v5.0.0
         with:
           name: crypto2
       - name: Set up JDK 11
-        uses: actions/setup-java@v4.7.1
+        uses: actions/setup-java@v5.0.0
         with:
-          java-version: '11.0.27'
+          java-version: '11.0.28'
           distribution: 'temurin'
       - run: java "-Dfile.encoding=UTF-8" "-Dconsole.encoding=UTF-8" -jar "build/libs/crypto2.jar"
       - name: Setup Pages
         uses: actions/configure-pages@v5.0.0
       - name: Upload pages
-        uses: actions/upload-pages-artifact@v3.0.1
+        uses: actions/upload-pages-artifact@v4.0.0
         with:
           path: ${{ github.workspace }}/public/
 
@@ -72,11 +72,11 @@ jobs:
     if: ${{ github.event_name != 'schedule' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v5.0.0
       - name: Setup Pages
         uses: actions/configure-pages@v5.0.0
       - name: Upload pages
-        uses: actions/upload-pages-artifact@v3.0.1
+        uses: actions/upload-pages-artifact@v4.0.0
         with:
           path: 'public/'
 
