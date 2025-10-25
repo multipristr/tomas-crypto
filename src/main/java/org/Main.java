@@ -47,12 +47,12 @@ public class Main {
                     "    <meta content=\"Tomas' crypto\" name=\"title\">\n" +
                     "    <meta content=\"summary\" name=\"twitter:card\">\n" +
                     "    <meta content=\"website\" property=\"og:type\">\n" +
-                    "    <meta content=\"https://tomas-crypto.gitlab.io/coins/\" property=\"og:url\">\n" +
+                    "    <meta content=\"https://multipristr.github.io/tomas-crypto/\" property=\"og:url\">\n" +
                     "    <meta content=\"Tomas' crypto\" property=\"og:title\">\n" +
                     "    <meta content=\"\" property=\"og:determiner\">\n" +
                     "    <meta content=\"en_US\" property=\"og:locale\">\n" +
-                    "    <meta content=\"https://raw.githubusercontent.com/multipristr/tomas-crypto/refs/heads/main/public/assets/android-chrome-512x512.png\" property=\"og:image\">\n" +
-                    "    <meta content=\"https://raw.githubusercontent.com/multipristr/tomas-crypto/refs/heads/main/public/assets/android-chrome-512x512.png\" property=\"og:image:secure_url\">\n" +
+                    "    <meta content=\"https://multipristr.github.io/tomas-crypto/assets/android-chrome-512x512.png\" property=\"og:image\">\n" +
+                    "    <meta content=\"https://multipristr.github.io/tomas-crypto/assets/android-chrome-512x512.png\" property=\"og:image:secure_url\">\n" +
                     "    <meta content=\"image/png\" property=\"og:image:type\">\n" +
                     "    <meta content=\"512\" property=\"og:image:width\">\n" +
                     "    <meta content=\"512\" property=\"og:image:height\">\n" +
