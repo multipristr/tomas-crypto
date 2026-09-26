@@ -47,8 +47,8 @@ public class Main {
                     "    <title>Tomas' crypto</title>\n" +
                     "    <meta name=\"title\" content=\"Tomas' crypto\">\n" +
                     "    <meta name=\"description\" content=\"" + description + "\">\n" +
-                    "    <meta property=\"og:image\" content=\"https://multipristr.github.io/tomas-crypto/assets/android-chrome-512x512.png\">\n" +
-                    "    <meta property=\"og:image:secure_url\" content=\"https://multipristr.github.io/tomas-crypto/assets/android-chrome-512x512.png\">\n" +
+                    "    <meta property=\"og:image\" content=\"https://multipristr.github.io/tomas-crypto/app/favicon/android-chrome-512x512.png\">\n" +
+                    "    <meta property=\"og:image:secure_url\" content=\"https://multipristr.github.io/tomas-crypto/app/favicon/android-chrome-512x512.png\">\n" +
                     "    <meta property=\"og:image:width\" content=\"512\">\n" +
                     "    <meta property=\"og:image:height\" content=\"512\">\n" +
                     "    <meta property=\"og:image:type\" content=\"image/png\">\n" +
@@ -60,12 +60,12 @@ public class Main {
                     "    <meta property=\"og:url\" content=\"https://multipristr.github.io/tomas-crypto/\">\n" +
                     "    <meta property=\"og:locale\" content=\"en_US\">\n" +
                     "    <meta content=\"width=device-width, initial-scale=1\" name=\"viewport\">\n" +
-                    "    <link href=\"assets/apple-touch-icon.png\" rel=\"apple-touch-icon\" sizes=\"180x180\">\n" +
-                    "    <link href=\"assets/favicon-32x32.png\" rel=\"icon\" sizes=\"32x32\" type=\"image/png\">\n" +
-                    "    <link href=\"assets/favicon-16x16.png\" rel=\"icon\" sizes=\"16x16\" type=\"image/png\">\n" +
-                    "    <link href=\"assets/site.webmanifest\" rel=\"manifest\">\n" +
-                    "    <link href=\"assets/favicon.ico\" rel=\"icon\">\n" +
-                    "    <link href=\"style.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
+                    "    <link href=\"app/favicon/apple-touch-icon.png\" rel=\"apple-touch-icon\" sizes=\"180x180\">\n" +
+                    "    <link href=\"app/favicon/favicon-32x32.png\" rel=\"icon\" sizes=\"32x32\" type=\"image/png\">\n" +
+                    "    <link href=\"app/favicon/favicon-16x16.png\" rel=\"icon\" sizes=\"16x16\" type=\"image/png\">\n" +
+                    "    <link href=\"app/favicon/site.webmanifest\" rel=\"manifest\">\n" +
+                    "    <link href=\"app/favicon/favicon.ico\" rel=\"icon\">\n" +
+                    "    <link href=\"app/globals.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
                     "</head>" +
                     "<body>\n" +
                     "<pre>\n");
