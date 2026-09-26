@@ -37,6 +37,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         String[] coinNames = determineCoinNames(args);
+        String description = Arrays.stream(coinNames).sorted().collect(Collectors.joining(", "));
 
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("public", "index.html"))) {
             writer.write("<!DOCTYPE html>\n" +
@@ -45,6 +46,7 @@ public class Main {
                     "    <meta charset=\"UTF-8\">\n" +
                     "    <title>Tomas' crypto</title>\n" +
                     "    <meta name=\"title\" content=\"Tomas' crypto\">\n" +
+                    "    <meta name=\"description\" content=\"" + description + "\">\n" +
                     "    <meta property=\"og:image\" content=\"https://multipristr.github.io/tomas-crypto/assets/android-chrome-512x512.png\">\n" +
                     "    <meta property=\"og:image:secure_url\" content=\"https://multipristr.github.io/tomas-crypto/assets/android-chrome-512x512.png\">\n" +
                     "    <meta property=\"og:image:width\" content=\"512\">\n" +
@@ -54,6 +56,7 @@ public class Main {
                     "    <meta name=\"twitter:card\" content=\"summary\">\n" +
                     "    <meta property=\"og:type\" content=\"website\">\n" +
                     "    <meta property=\"og:title\" content=\"Tomas' crypto\">\n" +
+                    "    <meta property=\"og:description\" content=\"" + description + "\">\n" +
                     "    <meta property=\"og:url\" content=\"https://multipristr.github.io/tomas-crypto/\">\n" +
                     "    <meta property=\"og:locale\" content=\"en_US\">\n" +
                     "    <meta content=\"width=device-width, initial-scale=1\" name=\"viewport\">\n" +
