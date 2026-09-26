@@ -44,18 +44,18 @@ public class Main {
                     "<head>\n" +
                     "    <meta charset=\"UTF-8\">\n" +
                     "    <title>Tomas' crypto</title>\n" +
-                    "    <meta content=\"Tomas' crypto\" name=\"title\">\n" +
-                    "    <meta content=\"summary\" name=\"twitter:card\">\n" +
-                    "    <meta content=\"website\" property=\"og:type\">\n" +
-                    "    <meta content=\"https://multipristr.github.io/tomas-crypto/\" property=\"og:url\">\n" +
-                    "    <meta content=\"Tomas' crypto\" property=\"og:title\">\n" +
-                    "    <meta content=\"\" property=\"og:determiner\">\n" +
-                    "    <meta content=\"en_US\" property=\"og:locale\">\n" +
-                    "    <meta content=\"https://multipristr.github.io/tomas-crypto/assets/android-chrome-512x512.png\" property=\"og:image\">\n" +
-                    "    <meta content=\"https://multipristr.github.io/tomas-crypto/assets/android-chrome-512x512.png\" property=\"og:image:secure_url\">\n" +
-                    "    <meta content=\"image/png\" property=\"og:image:type\">\n" +
-                    "    <meta content=\"512\" property=\"og:image:width\">\n" +
-                    "    <meta content=\"512\" property=\"og:image:height\">\n" +
+                    "    <meta name=\"title\" content=\"Tomas' crypto\">\n" +
+                    "    <meta property=\"og:image\" content=\"https://multipristr.github.io/tomas-crypto/assets/android-chrome-512x512.png\">\n" +
+                    "    <meta property=\"og:image:secure_url\" content=\"https://multipristr.github.io/tomas-crypto/assets/android-chrome-512x512.png\">\n" +
+                    "    <meta property=\"og:image:width\" content=\"512\">\n" +
+                    "    <meta property=\"og:image:height\" content=\"512\">\n" +
+                    "    <meta property=\"og:image:type\" content=\"image/png\">\n" +
+                    "    <meta property=\"og:image:alt\" content=\"Tomas' crypto\">\n" +
+                    "    <meta name=\"twitter:card\" content=\"summary\">\n" +
+                    "    <meta property=\"og:type\" content=\"website\">\n" +
+                    "    <meta property=\"og:title\" content=\"Tomas' crypto\">\n" +
+                    "    <meta property=\"og:url\" content=\"https://multipristr.github.io/tomas-crypto/\">\n" +
+                    "    <meta property=\"og:locale\" content=\"en_US\">\n" +
                     "    <meta content=\"width=device-width, initial-scale=1\" name=\"viewport\">\n" +
                     "    <link href=\"assets/apple-touch-icon.png\" rel=\"apple-touch-icon\" sizes=\"180x180\">\n" +
                     "    <link href=\"assets/favicon-32x32.png\" rel=\"icon\" sizes=\"32x32\" type=\"image/png\">\n" +
