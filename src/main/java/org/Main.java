@@ -37,6 +37,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         String[] coinNames = determineCoinNames(args);
+        String description = Arrays.stream(coinNames).sorted().collect(Collectors.joining(", "));
 
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("public", "index.html"))) {
             writer.write("<!DOCTYPE html>\n" +
@@ -44,25 +45,27 @@ public class Main {
                     "<head>\n" +
                     "    <meta charset=\"UTF-8\">\n" +
                     "    <title>Tomas' crypto</title>\n" +
-                    "    <meta content=\"Tomas' crypto\" name=\"title\">\n" +
-                    "    <meta content=\"summary\" name=\"twitter:card\">\n" +
-                    "    <meta content=\"website\" property=\"og:type\">\n" +
-                    "    <meta content=\"https://multipristr.github.io/tomas-crypto/\" property=\"og:url\">\n" +
-                    "    <meta content=\"Tomas' crypto\" property=\"og:title\">\n" +
-                    "    <meta content=\"\" property=\"og:determiner\">\n" +
-                    "    <meta content=\"en_US\" property=\"og:locale\">\n" +
-                    "    <meta content=\"https://multipristr.github.io/tomas-crypto/assets/android-chrome-512x512.png\" property=\"og:image\">\n" +
-                    "    <meta content=\"https://multipristr.github.io/tomas-crypto/assets/android-chrome-512x512.png\" property=\"og:image:secure_url\">\n" +
-                    "    <meta content=\"image/png\" property=\"og:image:type\">\n" +
-                    "    <meta content=\"512\" property=\"og:image:width\">\n" +
-                    "    <meta content=\"512\" property=\"og:image:height\">\n" +
+                    "    <meta name=\"title\" content=\"Tomas' crypto\">\n" +
+                    "    <meta name=\"description\" content=\"" + description + "\">\n" +
+                    "    <meta property=\"og:image\" content=\"https://multipristr.github.io/tomas-crypto/app/favicon/android-chrome-512x512.png\">\n" +
+                    "    <meta property=\"og:image:secure_url\" content=\"https://multipristr.github.io/tomas-crypto/app/favicon/android-chrome-512x512.png\">\n" +
+                    "    <meta property=\"og:image:width\" content=\"512\">\n" +
+                    "    <meta property=\"og:image:height\" content=\"512\">\n" +
+                    "    <meta property=\"og:image:type\" content=\"image/png\">\n" +
+                    "    <meta property=\"og:image:alt\" content=\"Tomas' crypto\">\n" +
+                    "    <meta name=\"twitter:card\" content=\"summary\">\n" +
+                    "    <meta property=\"og:type\" content=\"website\">\n" +
+                    "    <meta property=\"og:title\" content=\"Tomas' crypto\">\n" +
+                    "    <meta property=\"og:description\" content=\"" + description + "\">\n" +
+                    "    <meta property=\"og:url\" content=\"https://multipristr.github.io/tomas-crypto/\">\n" +
+                    "    <meta property=\"og:locale\" content=\"en_US\">\n" +
                     "    <meta content=\"width=device-width, initial-scale=1\" name=\"viewport\">\n" +
-                    "    <link href=\"assets/apple-touch-icon.png\" rel=\"apple-touch-icon\" sizes=\"180x180\">\n" +
-                    "    <link href=\"assets/favicon-32x32.png\" rel=\"icon\" sizes=\"32x32\" type=\"image/png\">\n" +
-                    "    <link href=\"assets/favicon-16x16.png\" rel=\"icon\" sizes=\"16x16\" type=\"image/png\">\n" +
-                    "    <link href=\"assets/site.webmanifest\" rel=\"manifest\">\n" +
-                    "    <link href=\"assets/favicon.ico\" rel=\"icon\">\n" +
-                    "    <link href=\"style.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
+                    "    <link href=\"app/favicon/apple-touch-icon.png\" rel=\"apple-touch-icon\" sizes=\"180x180\">\n" +
+                    "    <link href=\"app/favicon/favicon-32x32.png\" rel=\"icon\" sizes=\"32x32\" type=\"image/png\">\n" +
+                    "    <link href=\"app/favicon/favicon-16x16.png\" rel=\"icon\" sizes=\"16x16\" type=\"image/png\">\n" +
+                    "    <link href=\"app/favicon/site.webmanifest\" rel=\"manifest\">\n" +
+                    "    <link href=\"app/favicon/favicon.ico\" rel=\"icon\">\n" +
+                    "    <link href=\"app/globals.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
                     "</head>" +
                     "<body>\n" +
                     "<pre>\n");
@@ -109,8 +112,8 @@ public class Main {
         String[] coinNames = new String[]{
                 /*"SOL", "VET", "FTM", "RUNE", "THETA", "OP", "PEPE24478", "SHIB", "SUI20947", "ALGO", "KAS", "OM", "ICP",
                 "IMX10603", "HBAR", "GRT6719", "INJ", "STX4847", "ATOM", "RENDER", "FET", "NEAR", "APT21794", "AAVE",
-                "TAO22974", "TIA22861", "AVAX", "TON", "DOT", "MATIC", "UNI7083",*/ "DOGE", "TRX", "ETC", "FIL", "XMR",
-                "BTC", "ETH", "BNB", "ADA", "XRP", "LTC", "LINK", "BCH", "XLM"
+                "TAO22974", "TIA22861", "AVAX", "TON", "DOT", "MATIC", "UNI7083", "HYPE32196", "XMR",*/ "DOGE", "TRX", "ETC", "FIL",
+                "BTC", "ETH", "BNB", "ADA", "XRP", "LTC", "LINK", "BCH", "XLM", "ZEC"
         };
         if (args.length > 0) {
             String[] argumentCoinNames = Arrays.stream(args[0].split(","))

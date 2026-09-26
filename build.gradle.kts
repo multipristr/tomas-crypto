@@ -7,10 +7,10 @@ repositories {
 }
 
 dependencies {
-    implementation("org.slf4j:slf4j-jdk14:2.0.16")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.16")
-    implementation("org.slf4j:log4j-over-slf4j:2.0.16")
-    implementation("com.github.zhkl0228:impersonator-okhttp:1.0.8")
+    implementation("org.slf4j:slf4j-jdk14:2.0.19")
+    implementation("org.slf4j:jcl-over-slf4j:2.0.19")
+    implementation("org.slf4j:log4j-over-slf4j:2.0.19")
+    implementation("com.github.zhkl0228:impersonator-okhttp:1.10.2")
 }
 
 tasks {

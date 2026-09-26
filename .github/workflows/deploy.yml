@@ -29,17 +29,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5.0.0
+      - uses: actions/checkout@v7.0.1
       - name: Set up JDK 11
-        uses: actions/setup-java@v5.0.0
+        uses: actions/setup-java@v6.0.1
         with:
-          java-version: '11.0.28'
+          java-version: '11.0.32'
           distribution: 'temurin'
           cache: 'gradle'
       - name: Gradle build fat jar
         run: ./gradlew check jar --continue --no-daemon --no-watch-fs
       - name: Upload compiled classes
-        uses: actions/upload-artifact@v5.0.0
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: crypto2
           path: ${{ github.workspace }}/build*
@@ -50,20 +50,20 @@ jobs:
     if: ${{ github.event_name == 'schedule' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5.0.0
-      - uses: actions/download-artifact@v6.0.0
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/download-artifact@v8.0.1
         with:
           name: crypto2
       - name: Set up JDK 11
-        uses: actions/setup-java@v5.0.0
+        uses: actions/setup-java@v6.0.1
         with:
-          java-version: '11.0.28'
+          java-version: '11.0.32'
           distribution: 'temurin'
       - run: java "-Dfile.encoding=UTF-8" "-Dconsole.encoding=UTF-8" -jar "build/libs/crypto2.jar"
       - name: Setup Pages
-        uses: actions/configure-pages@v5.0.0
+        uses: actions/configure-pages@v6.0.0
       - name: Upload pages
-        uses: actions/upload-pages-artifact@v4.0.0
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: ${{ github.workspace }}/public/
 
@@ -72,11 +72,11 @@ jobs:
     if: ${{ github.event_name != 'schedule' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5.0.0
+      - uses: actions/checkout@v7.0.1
       - name: Setup Pages
-        uses: actions/configure-pages@v5.0.0
+        uses: actions/configure-pages@v6.0.0
       - name: Upload pages
-        uses: actions/upload-pages-artifact@v4.0.0
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: 'public/'
 
@@ -94,4 +94,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4.0.5
+        uses: actions/deploy-pages@v5.0.1
