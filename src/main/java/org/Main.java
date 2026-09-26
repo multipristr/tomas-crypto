@@ -109,7 +109,7 @@ public class Main {
         String[] coinNames = new String[]{
                 /*"SOL", "VET", "FTM", "RUNE", "THETA", "OP", "PEPE24478", "SHIB", "SUI20947", "ALGO", "KAS", "OM", "ICP",
                 "IMX10603", "HBAR", "GRT6719", "INJ", "STX4847", "ATOM", "RENDER", "FET", "NEAR", "APT21794", "AAVE",
-                "TAO22974", "TIA22861", "AVAX", "TON", "DOT", "MATIC", "UNI7083", "HYPE32196",*/ "DOGE", "TRX", "ETC", "FIL", "XMR",
+                "TAO22974", "TIA22861", "AVAX", "TON", "DOT", "MATIC", "UNI7083", "HYPE32196", "XMR",*/ "DOGE", "TRX", "ETC", "FIL",
                 "BTC", "ETH", "BNB", "ADA", "XRP", "LTC", "LINK", "BCH", "XLM", "ZEC"
         };
         if (args.length > 0) {
